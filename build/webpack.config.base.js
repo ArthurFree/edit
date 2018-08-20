@@ -15,6 +15,7 @@ const isVerbose = process.argv.includes('--verbose');
 const isAnalyze = process.argv.includes('--analyze') || process.argv.includes('--analyse');
 
 const reScript = /\.(js|jsx)$/;
+const reTsScript = /\.(ts|tsx)$/;
 const reStyle = /\.(css|less|scss|sass|styl)$/;
 const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
