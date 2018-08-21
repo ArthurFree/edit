@@ -1,25 +1,24 @@
 {
     "compilerOptions": {
-        "tartget": "es5",
+        "target": "es5",
         "lib": [
             "dom",
             "es2015"
         ],
         "rootDir": "src",
-        "module": "es2015",
+        "module": "commonjs",
         "moduleResolution": "node",
-        "outDir": "lib",
+        "outDir": "./dist/",
         "sourceMap": true,
         "declaration": true,
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
+        "noImplicitAny": true,
         "suppressImplicitAnyIndexErrors": true
     },
-    "exclude": [
-        "node_modules",
-        "dist",
-        "build"
+    "include": [
+        "./src/**/*"
     ],
     "compileOnSave": false
 }

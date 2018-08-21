@@ -15,7 +15,6 @@ const isVerbose = process.argv.includes('--verbose');
 const isAnalyze = process.argv.includes('--analyze') || process.argv.includes('--analyse');
 
 const reScript = /\.(js|jsx)$/;
-const reTsScript = /\.(ts|tsx)$/;
 const reStyle = /\.(css|less|scss|sass|styl)$/;
 const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
@@ -24,7 +23,7 @@ process.npDeprecation = true;
 module.exports = options => ({
     mode: options.mode,
     entry: options.entry,
-    output: Object(
+    output: Object.assign(
         {
             path: DIST_DIR,
             publicPath: '/',
@@ -33,28 +32,28 @@ module.exports = options => ({
     ),
     optimization: options.optimization,
     resolve: {
-        modules: ['node_modules', 'app'],
-        extensions: ['.js', '.jsx'],
+        modules: [path.resolve(__dirname, '..', 'src'), 'node_modules'],
+        extensions: ['.ts', '.js', '.jsx', '.json'],
         mainFields: ['browser', 'jsnext:main', 'main'],
     },
     devtool: options.devtool,
     target: 'web',
     performance: options.performance || {},
     module: {
-        rules: [
-            {
+        rules: options.module.rules.concat([
+            /* {
                 test: reScript,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: options.babelQuery,
                 }
-            },
-            {
+            }, */
+            /* {
                 test: reStyle,
                 exclude: /node_modules/,
                 use: ['style-loader', 'css-loader'],
-            },
+            }, */
             {
                 test: /\.(eot|otf|ttf|woff|woff2)$/,
                 use: 'file-loader',
@@ -115,7 +114,7 @@ module.exports = options => ({
                     },
                 },
             },
-        ],
+        ]),
     },
     plugins: options.plugins.concat([
         // new webpack.ProvidePlugin({

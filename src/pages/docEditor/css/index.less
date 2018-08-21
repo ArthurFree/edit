@@ -1,0 +1,83 @@
+@import '../../../common/css/index.less';
+
+header {
+    position: relative;
+    width: 100%;
+    min-width: 1280px;
+    height: 50px;
+    line-height: 50px;
+    z-index: 110;
+    user-select: none;
+    background: linear-gradient(180deg,#fdfdfd,#fff);
+}
+
+header:before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: linear-gradient(180deg,#fdfdfd,#fff);
+    box-shadow: 0 2px 3px 0 hsla(0,0%,39%,.15);
+}
+
+header .h-container {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header .header-left-box {
+    width: 100%;
+    height: 100%;
+
+    .s-header {
+        height: 100%;
+    }
+}
+
+header .header-op-wrapper {
+    float: left;
+    position: relative;
+    padding: 0 14px 0 10px;
+    height: 50px;
+    line-height: 50px;
+
+    .header-back-up {
+        width: 38px;
+        height: 28px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        margin-left: 10px;
+        box-shadow: 0 1px 1px 0 rgba(0,0,0,.11);
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
+        background: linear-gradient(180deg,#fdfdfd,#f8f8f8);
+    }
+
+    .header-back-up:active {
+        background: linear-gradient(180deg,#f0f0f0,#f7f7f7);
+    }
+
+    .header-back-icon {
+        width: 18px;
+        height: 18px;
+        margin: 0 auto;
+        position: relative;
+        top: 5px;
+        display: block;
+        background-image: url(../img/icon_goback.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+}
+
+header .dropdown-menu-wrap {
+    float: left;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+}
