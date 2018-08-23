@@ -1,5 +1,64 @@
 .doc-content {
+    position: absolute;
     width: 100%;
     min-width: 1280px;
-    height: 100%;
+    top: 50px;
+    bottom: 0;
+    left: 0;
 }
+
+.doc-content .doc-toolbar {
+    position: relative;
+    margin: 0 auto;
+    padding: 11px 0 8px 0;
+    height: 46px;
+    border: none;
+    text-align: center;
+    font-family: Helvetica,Tahoma,Arial,Hiragino Sans GB,Microsoft YaHei,sans-serif;
+    white-space: nowrap;
+    background-color: #f7f7f7;
+    transition: height .2s ease-in;
+}
+
+.doc-content .doc-toolbar.doc-snow {
+    border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Helvetica,Tahoma,Arial,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,SimSun,\\5B8B\4F53,Heiti,\\9ED1\4F53,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 10px;
+}
+
+.doc-content .doc-toolbar.doc-snow .doc-formats {
+    padding: 0 6px 0 5px;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    z-index: 101;
+}
+
+.doc-content .doc-toolbar.doc-snow .doc-formats:not(:first-child):after {
+    float: left;
+    margin-top: -22px;
+    margin-left: -6px;
+    width: 1px;
+    height: 18px;
+    background-color: #ddd;
+}
+
+.doc-content .doc-toolbar.doc-snow button {
+    float: left;
+    padding: 0;
+    width: 30px;
+    height: 27px;
+    border: none;
+    border-radius: 0;
+    display: inline-block;
+    background: none;
+    cursor: pointer;
+}
+
+.doc-content .doc-toolbar.doc-snow button:focus {
+    outline: none;
+}
+
