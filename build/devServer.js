@@ -14,3 +14,6 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.listen(8082);
+
+console.log('----- 服务正在运行，访问地址: http://localhost:8082 -----');
+console.log('---------------------------------------------------------')
