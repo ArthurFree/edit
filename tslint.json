@@ -6,7 +6,9 @@
     "jsRules": {},
     "rules": {
         "no-console": false,
-        "quotemark": [true, "single"]
+        "no-debugger": false,
+        "quotemark": [true, "single"],
+        "curly": [true, "ignore-same-line"]
     },
     "rulesDirectory": []
 }

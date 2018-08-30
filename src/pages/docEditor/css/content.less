@@ -38,9 +38,30 @@
     outline: none;
     font-size: 11pt;
     color: #494949;
+    -webkit-font-smoothing: antialiased; /*chrome、safari*/
+    -moz-osx-font-smoothing: antialiased; /*firefox*/
+
+    &>.doc-video, &>blockquote,
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6,
+    &>ol, &>p, &>ul {
+        margin: 0;
+        padding: 0 100px;
+        outline: none;
+    }
 }
 
-.doc-snow .doc-editor>.doc-video, .doc-snow .doc-editor>blockquote, .doc-snow .doc-editor>h1, .doc-snow .doc-editor>h2, .doc-snow .doc-editor>h3, .doc-snow .doc-editor>h4, .doc-snow .doc-editor>h5, .doc-snow .doc-editor>h6, .doc-snow .doc-editor>ol, .doc-snow .doc-editor>p, .doc-snow .doc-editor>ul {
-    padding: 0 100px;
-    outline: none;
+/* 选中文本背景颜色 */
+/*  webkit, opera, IE9 */
+.doc-content .doc-editor::selection {
+    background: #d8ebfe;
+}
+
+/* Firfox */
+.doc-content .doc-editor::-moz-selection {
+    background: #d8ebfe;
+}
+
+/* Webkit */
+.doc-content .doc-editor::-webkit-selection {
+    background: #d8ebfe;
 }

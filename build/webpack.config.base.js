@@ -54,9 +54,54 @@ module.exports = options => ({
                 exclude: /node_modules/,
                 use: ['style-loader', 'css-loader'],
             }, */
-            {
+            /* {
                 test: /\.(eot|otf|ttf|woff|woff2)$/,
                 use: 'file-loader',
+            }, */
+            {
+                test: /\.woff(\?t=\d+)?$/,
+                loader: 'url-loader',
+                include: path.resolve(__dirname, '..', 'src/pages/docEditor/img/iconfont'),
+                options: {
+                    limit: 10000,
+                    minetype: 'application/font-woff',
+                },
+            },
+            {
+                test: /\.woff2(\?t=\d+)?$/,
+                loader: 'url-loader',
+                include: path.resolve(__dirname, '..', 'src/pages/docEditor/img/iconfont'),
+                options: {
+                    limit: 10000,
+                    minetype: 'application/font-woff',
+                },
+            },
+            {
+                test: /\.ttf(\?t=\d+)?$/,
+                loader: 'url-loader',
+                include: path.resolve(__dirname, '..', 'src/pages/docEditor/img/iconfont'),
+                options: {
+                    limit: 10000,
+                    minetype: 'application/octet-stream',
+                },
+            },
+            {
+                test: /\.eot(\?t=\d+(#iefix)?)?$/,
+                loader: 'url-loader',
+                include: path.resolve(__dirname, '..', 'src/pages/docEditor/img/iconfont'),
+                options: {
+                    limit: 10000,
+                    minetype: 'application/octet-stream',
+                },
+            },
+            {
+                test: /\.svg(\?t=\d+(#\w+)?)?$/,
+                loader: 'url-loader',
+                include: path.resolve(__dirname, '..', 'src/pages/docEditor/img/iconfont'),
+                options: {
+                    limit: 10000,
+                    minetype: 'image/svg+xml',
+                },
             },
             {
                 test: /\.svg$/,
