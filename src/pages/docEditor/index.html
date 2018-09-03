@@ -9,19 +9,27 @@
 <body>
     <div class="docEditor">
         <header class="header">
-        </header>
-        <div class="doc-content">
-            <div class="doc-title-box">
-                <input class="doc-title-input"
-                    type="text"
-                    placeholder="无标题" />
+            <div class="header-menu-wrap">
+                <div class="header-menu">
+                    <div class="header-line"></div>
+                </div>
             </div>
-            <div class="doc-editor"
-                autocorrect="off" autocomplete="off"
-                spellcheck="false" autocapitalize="off"
-                contenteditable="true"></div>
+        </header>
+        <div class="doc-content-wrap">
+            <div class="doc-content">
+                <div class="doc-title-box">
+                    <input class="doc-title-input"
+                        type="text"
+                        placeholder="无标题" />
+                </div>
+                <div class="doc-editor"
+                    autocorrect="off" autocomplete="off"
+                    spellcheck="false" autocapitalize="off"
+                    contenteditable="true"></div>
+            </div>
         </div>
-        <div class="doc-toolbar">
+
+        <div class="doc-toolbar" style="display: none">
             <div class="doc-toolbar-wrap doc-toolbar-theme-black">
                 <div class="doc-toolbar-line toolbar-line-theme-black">
                     <span class="toolbar-left-align toolbar-icon-wrap">
@@ -135,7 +143,8 @@
                 </div>
             </div>
         </div>
-        <footer></footer>
+
+        <div class="doc-left-menu"></div>
     </div>
 </body>
 </html>
