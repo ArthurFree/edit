@@ -99,6 +99,12 @@
     }
 }
 
+.toolbar-icon:hover {
+    background-color: #55565a;
+    border-radius: 6px;
+    color: #fff;
+}
+
 .toolbar-icon-wrap {
     width: 40px;
     height: 50px;
@@ -184,7 +190,7 @@
     user-select: none;
     // height: 30px;
 
-    .toolbar-choose-item {
+    .toolbar-choose-item, .toolbar-color-item {
         width: 25px;
         height: 25px;
         line-height: 25px;
@@ -197,6 +203,7 @@
     }
 
     .toolbar-choose-item:hover {
+        color: #fff;
         background-color: #55565a;
     }
 }
@@ -251,19 +258,58 @@
     }
 }
 
-.toolbar-background-color {
+.toolbar-background-color, .toolbar-font-color {
     .toolbar-line-title {
         padding-left: 8px;
     }
 
     .toolbar-line-choose {
-        padding-left: 0;
+        padding-left: 4px;
+        font-size: 0;
+        text-align: left;
     }
 }
 
-/* .toolbar-choose-more:after {
+.toolbar-choose-more {
+    position: relative;
+    margin-top: 2px;
+    margin-left: 3px;
+    width: 8px;
+    height: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.toolbar-choose-more:after {
     content: "";
-    border-width: 2px 2px 0 2px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 4px 4px 0 4px;
     border-style: solid;
     border-color: #525253 transparent transparent transparent;
-} */
+}
+
+.toolbar-choose-more:hover {
+    background-color: #dcdcdc;
+}
+
+.toolbar-line-choose .toolbar-color-item {
+    // padding: 2px 0;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+
+    .color-item {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+    }
+
+    .color-item:hover {
+        border: 1px solid #55565a;
+        box-shadow: 0 1px 6px #55565a;
+    }
+}
