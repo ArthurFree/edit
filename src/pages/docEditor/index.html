@@ -7,7 +7,7 @@
     <title>Editor</title>
 </head>
 <body>
-    <div class="docEditor">
+    <div class="document-editor" style="visibility: hidden;">
         <header class="header">
             <div class="header-menu-wrap">
                 <div class="header-menu">
@@ -152,7 +152,50 @@
             </div>
         </div>
 
-        <div class="doc-left-menu"></div>
+        <div class="document-list-wrap">
+            <div class="list-title-tab">
+                <span class="list-title-item list-item-selected">文档目录</span>
+            </div>
+            <div class="list-search-wrap">
+                <div class="list-search-bar">
+                    <div class="search-bar-icon"></div>
+                    <input type="text" class="search-bar-input" placeholder="搜索文件..." />
+                    <span class="transition-input-line"></span>
+                </div>
+            </div>
+            <div class="list-tree-wrap">
+                <ul class="doc-tree doc-tree-showline">
+                    <li class="doc-tree-node-open">
+                        <span class="doc-tree-switcher doc-tree-switcher-poen"></span>
+                        <span class="doc-tree-node-content">
+                            <span class="doc-tree-title">FOLD 1</span>
+                        </span>
+                        <ul class="doc-child-tree doc-child-tree-open">
+                            <li class="doc-tree-node-open">
+                                <span class="doc-tree-switcher doc-tree-switcher-open"></span>
+                                <span class="doc-tree-node-content">
+                                    <span class="doc-tree-title">FOLD 1 - 1</span>
+                                </span>
+                                <ul class="doc-child-tree doc-child-tree-open">
+                                    <li class="doc-tree-node-close">
+                                        <span class="doc-tree-switcher doc-tree-switcher-noop"></span>
+                                        <span class="doc-tree-node-content doc-tree-node-content-normal">
+                                            <span class="doc-tree-title">leaf</span>
+                                        </span>
+                                    </li>
+                                    <li class="doc-tree-node-close">
+                                        <span class="doc-tree-switcher doc-tree-switcher-noop"></span>
+                                        <span class="doc-tree-node-content doc-tree-node-content-normal">
+                                            <span class="doc-tree-title">leaf</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -19,14 +19,18 @@ function setDocMod() {
 }
 
 function init() {
+    const $docEditor: any = document.querySelector('.document-editor');
+    $docEditor.style.visibility = 'visible';
+
     setDocMod();
 }
 
 window.onload = () => {
+    const $menu: any = document.querySelector('.header-menu');
     init();
 
-    window.addEventListener('click', function handleMenuClick(): void {
-        const $menu: any = document.querySelector('.header-menu');
+    $menu.addEventListener('click', function handleMenuClick(): void {
+
         const $menuline: any = document.querySelector('.header-menu .header-menu-line');
 
         $menu.classList.add('active');
