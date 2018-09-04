@@ -24,4 +24,12 @@ function init() {
 
 window.onload = () => {
     init();
+
+    window.addEventListener('click', function handleMenuClick(): void {
+        const $menu: any = document.querySelector('.header-menu');
+        const $menuline: any = document.querySelector('.header-menu .header-menu-line');
+
+        $menu.classList.add('active');
+        $menuline.classList.add('header-menu-animate');
+    }, false);
 };
