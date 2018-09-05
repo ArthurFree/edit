@@ -130,8 +130,10 @@
 }
 
 .doc-tree li {
+    position: relative;
     padding: 4px;
     margin: 0;
+    font-size: 0;
     list-style: none;
     white-space: nowrap;
     outline: 0;
@@ -150,44 +152,79 @@
     padding-bottom: 7px;
 }
 
+.doc-tree .doc-tree-background {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 28px;
+    background-color: #eee;
+}
+
+.doc-tree .doc-tree-arrow {
+    display: inline-block;
+    border: 4px solid transparent;
+    border-left-color: #333;
+    vertical-align: middle;
+
+    &.doc-tree-arrow-open {
+        transform: rotate(45deg);
+    }
+}
+
 .doc-tree-switcher {
     position: relative;
     margin: 0;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
     border: 0 none;
     box-sizing: border-box;
     outline: none;
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-image: url(../img/folder@2x.png);
+    background-color: #fff;
     cursor: pointer;
+
+    .doc-tree-item-icon {
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-image: url(../img/folder@2x.png);
+    }
 }
 
 .doc-tree-node-content {
     margin: 0;
     padding: 0 5px;
-    height: 24px;
-    line-height: 24px;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
     display: inline-block;
     box-sizing: border-box;
     border-radius: 2px;
     text-decoration: none;
-    vertical-align: top;
+    vertical-align: middle;
     color: rgba(0, 0, 0, 0.65);
     -webkit-transition: all .3s;
     transition: all .3s;
     cursor: pointer;
 }
 
+.doc-tree-node-content:hover {
+    background-color: #f7f7f7;
+}
+
+.doc-tree-title {
+    font-size: 14px;
+}
+
 .doc-tree.doc-tree-showline li:not(:last-child)::before {
     content: "";
     position: absolute;
-    left: 12px;
+    left: 17px;
     margin: 22px 0;
     width: 1px;
     height: 100%;
@@ -197,7 +234,11 @@
 
 .doc-tree .doc-tree-switcher.doc-tree-switcher-noop {
     cursor: default;
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAVFBMVEUAAAAAAAAAAAAAAAAAAADZ2dm/v78AAADb29va2trExMT6+vr////09PT4+Pjb29v29vbw8PDy8vLu7u7s7Ozk5OTm5ubS0tLHx8fY2NjU1NTo6Oh8C9D5AAAAC3RSTlMABg0ZBOUoCeXlJxnoPgsAAAHISURBVEjH7ZfRUoMwEEUFo6g0IbtJU1v//z+9S7pDp0MSyjg+9bAYwBzubqcvfVGMMV0F/PulBNypzseXKcvddKgyvr2bojxMdbdmdz1kC9gyal6BXlPU7LLMsJcXKCIn7bwo30vLi+ioc5eTi0BWe5+s9j5Z7X2y2k3Z41hgldVuJ3s9RC7bKnuVpK6rJi/2Z2dWZG/X8JDT5fvK6ceeh4LMIQaOkQLgEHzGxulyypwTn/sVWXYRZJyEU96gnxvFlNIxHY8psTv33Xoydq8AnZXxMK3JeZ+UXccLh6JsCQ2jhHlljMCBmKTaMnZj5BjiPDzjKuCRVGjKTHACdNI8xj1OZtjNtqOkS9cgzpfxmkx2QzLnZEYP8HVmJr8xmXI0ljyz9FCVnXOeEcCIQuFFlqU43+Bk510p2XnLCMsl30781RuSI9STcxZJvnWr1Nq+BjEmvFXQFaomN2nJfk5RHmxbPl0gg6MelSmwiPPCD8ps989s2Y9uRJWOojw6AcsCts/ow6KMPZoK5hh9oJf1tpf9o3J3X5DVFJa029Ybbbd5yk/5Kf+PvJE/ls0wPcBg7n4a9a+b6bs72XRDv5GhMyqrDX0jRt1fzkCCNlSnoUEAAAAASUVORK5CYII=);
+
+    .doc-tree-item-icon {
+        margin-top: 2px;
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAVFBMVEUAAAAAAAAAAAAAAAAAAADZ2dm/v78AAADb29va2trExMT6+vr////09PT4+Pjb29v29vbw8PDy8vLu7u7s7Ozk5OTm5ubS0tLHx8fY2NjU1NTo6Oh8C9D5AAAAC3RSTlMABg0ZBOUoCeXlJxnoPgsAAAHISURBVEjH7ZfRUoMwEEUFo6g0IbtJU1v//z+9S7pDp0MSyjg+9bAYwBzubqcvfVGMMV0F/PulBNypzseXKcvddKgyvr2bojxMdbdmdz1kC9gyal6BXlPU7LLMsJcXKCIn7bwo30vLi+ioc5eTi0BWe5+s9j5Z7X2y2k3Z41hgldVuJ3s9RC7bKnuVpK6rJi/2Z2dWZG/X8JDT5fvK6ceeh4LMIQaOkQLgEHzGxulyypwTn/sVWXYRZJyEU96gnxvFlNIxHY8psTv33Xoydq8AnZXxMK3JeZ+UXccLh6JsCQ2jhHlljMCBmKTaMnZj5BjiPDzjKuCRVGjKTHACdNI8xj1OZtjNtqOkS9cgzpfxmkx2QzLnZEYP8HVmJr8xmXI0ljyz9FCVnXOeEcCIQuFFlqU43+Bk510p2XnLCMsl30781RuSI9STcxZJvnWr1Nq+BjEmvFXQFaomN2nJfk5RHmxbPl0gg6MelSmwiPPCD8ps989s2Y9uRJWOojw6AcsCts/ow6KMPZoK5hh9oJf1tpf9o3J3X5DVFJa029Ybbbd5yk/5Kf+PvJE/ls0wPcBg7n4a9a+b6bs72XRDv5GhMyqrDX0jRt1fzkCCNlSnoUEAAAAASUVORK5CYII=);
+    }
 }
