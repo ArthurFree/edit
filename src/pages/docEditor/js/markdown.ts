@@ -1,4 +1,20 @@
 const markdown: any = {
+    action: (moka: any, cmd: string[]): boolean|void => {
+        if (moka.selection.focusOffset > cmd[1]) {
+            return false;
+        }
+
+        const node = moka.selection.focusNode;
+        node.textContent = node.textContent.slice(cmd[1]);
+        moka.execCommand(cmd[0]);
+    },
+    init: (moka: any): void => {
+        moka.on('keypress', (e: any): any => {
+            debugger;
+            const cmd = markdown.parse(e);
+            if (cmd) return markdown.action(moka, cmd);
+        });
+    },
     keymap: {
         96: '`',
         62: '>',
@@ -13,8 +29,19 @@ const markdown: any = {
 
         // 按下空格时
         if (code === 32) {
-            console.log('TODO');
+            const markdownSyntax = markdown.stack.join('');
+            const cmd = markdown.valid(markdownSyntax);
+            markdown.stack = [];
+
+            if (cmd) {
+                e.preventDefault();
+                return cmd;
+            }
         }
+
+        if (markdown.keymap[code]) markdown.stack.push(markdown.keymap[code]);
+
+        return false;
     },
     stack: [],
     valid: (str: string): any => {
@@ -41,3 +68,5 @@ const markdown: any = {
         }
     },
 };
+
+export default markdown;

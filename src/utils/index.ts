@@ -4,7 +4,7 @@ const utils: any = {
         return toString.call(obj).slice(8, -1) === type;
     },
 
-    foreach: (obj: any, iterator: any, arrayLike: boolean): any => {
+    forEach: (obj: any, iterator: any, arrayLike: boolean): any => {
         if (!obj) return;
         if (arrayLike == null) arrayLike = utils.is(obj, 'Array');
         if (arrayLike) {
@@ -31,6 +31,28 @@ const utils: any = {
 
         return defaults;
     } */
+    copy: (options: any, source: any): void => {
+        utils.forEach(source, (value: string, key: string): void => {
+            options[key] = utils.is(value, 'Object') ? utils.copy({}, value) :
+                utils.is(value, 'Array') ? utils.copy([], value) : value;
+        });
+
+        return options;
+    },
+
+    merge: (options: any): any => {
+        let defaults: any = {
+            class: 'moka',
+        };
+
+        if (options.nodeType === 1) {
+            defaults.editor = options;
+        } else {
+            defaults = utils.copy(defaults, options);
+        }
+
+        return defaults;
+    },
 };
 
 export default utils;

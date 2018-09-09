@@ -1,4 +1,5 @@
 import '../css/index.less';
+import MokaEditor from './moka-editor';
 
 console.log('--- this is the docEditor folder ---');
 
@@ -7,20 +8,24 @@ console.log('--- this is the docEditor folder ---');
  * 1.
  */
 
-const $doc: any = document.querySelector('.doc-editor');
+const $editor: any = document.querySelector('.doc-editor');
 
 function setDocMod() {
     const $p: any = document.createElement('p');
 
     $p.innerHTML = 'hello, world';
-    $doc.appendChild($p);
+    $editor.appendChild($p);
     document.execCommand('defaultParagraphSeparator', false, 'div');
-    $doc.focus();
+    $editor.focus();
 }
 
 function init() {
     const $docEditor: any = document.querySelector('.document-editor');
     $docEditor.style.visibility = 'visible';
+
+    const editor = new MokaEditor($editor);
+
+    console.log('--- editor ---', editor);
 
     setDocMod();
 }
@@ -37,3 +42,8 @@ window.onload = () => {
         $menuline.classList.add('header-menu-animate');
     }, false);
 };
+
+// const $editor = document.querySelector('.doc-editor');
+// const editor = new MokaEditor($editor);
+
+// console.log('--- editor ---', editor);
