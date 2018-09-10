@@ -8,7 +8,8 @@
         "no-console": false,
         "no-debugger": false,
         "quotemark": [true, "single"],
-        "curly": [true, "ignore-same-line"]
+        "curly": [true, "ignore-same-line"],
+        "variable-name": [true, "allow-leading-underscore"]
     },
     "rulesDirectory": []
 }

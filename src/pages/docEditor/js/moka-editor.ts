@@ -5,8 +5,8 @@ const doc: any = document;
 const commandsReg = {
     block: /^(?:p|h[1-6]|blockquote|pre)$/,
     inline: /^(?:bold|italic|underline|insertorderedlist|insertunorderedlist|indent|outdent)$/,
-    source: /^(?:createlink|unlink)$/,
     insert: /^(?:inserthorizontalrule|insertimage|insert)$/,
+    source: /^(?:createlink|unlink)$/,
     wrap: /^(?:code)$/,
 };
 const effectNodeReg = /(?:[pubia]|h[1-6]|blockquote|[uo]l|li)/i;
