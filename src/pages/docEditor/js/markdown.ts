@@ -10,7 +10,6 @@ const markdown: any = {
     },
     init: (moka: any): void => {
         moka.on('keypress', (e: any): any => {
-            debugger;
             const cmd = markdown.parse(e);
             if (cmd) return markdown.action(moka, cmd);
         });
