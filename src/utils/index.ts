@@ -4,6 +4,16 @@ const utils: any = {
         return toString.call(obj).slice(8, -1) === type;
     },
 
+    delayExec: (fn: any): any => {
+        let timer: any|undefined;
+        return (delay: number): void => {
+            clearTimeout(timer);
+            timer = setTimeout((): void => {
+                fn();
+            }, delay || 1);
+        };
+    },
+
     forEach: (obj: any, iterator: any, arrayLike: boolean): any => {
         if (!obj) return;
         if (arrayLike == null) arrayLike = utils.is(obj, 'Array');

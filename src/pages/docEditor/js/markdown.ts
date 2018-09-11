@@ -1,10 +1,13 @@
 const markdown: any = {
     action: (moka: any, cmd: string[]): boolean|void => {
+        // 判断标识符在行首位置
         if (moka.selection.focusOffset > cmd[1]) {
             return false;
         }
 
+        // 获取当前光标所在的文本节点
         const node = moka.selection.focusNode;
+        // 去除文本节点中的标识符
         node.textContent = node.textContent.slice(cmd[1]);
         moka.execCommand(cmd[0]);
     },
@@ -26,7 +29,7 @@ const markdown: any = {
     parse: (e: any): any => {
         const code = e.keyCode || e.which;
 
-        // 按下空格时
+        // 按下空格时，返回 cmd 变量，否则返回 false
         if (code === 32) {
             const markdownSyntax = markdown.stack.join('');
             const cmd = markdown.valid(markdownSyntax);
@@ -43,7 +46,7 @@ const markdown: any = {
         return false;
     },
     stack: [],
-    valid: (str: string): any => {
+    valid: (str: string): boolean|[string, number] => {
         const len = str.length;
 
         if (str.match(/[#]{1,6}/)) {
@@ -63,7 +66,7 @@ const markdown: any = {
             case '*':
                 return ['insertunorderedlist', len];
             default:
-                return;
+                return false;
         }
     },
 };

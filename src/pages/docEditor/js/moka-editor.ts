@@ -11,6 +11,10 @@ const commandsReg = {
 };
 const effectNodeReg = /(?:[pubia]|h[1-6]|blockquote|[uo]l|li)/i;
 
+function toggleNode(node: any, hide: boolean): void {
+    node.style.display = hide ? 'none' : 'block';
+}
+
 function addListener(ctx: any, target: any, type: string, listener: any): any {
     target.addEventListener(type, listener, false);
     return ctx;
@@ -96,11 +100,42 @@ function commandLink(ctx: any, tag: string, value: any): any {
     }
 }
 
+function initToolbar(ctx: any): void {
+    ctx._menu = doc.querySelector('.doc-toolbar');
+    toggleNode(ctx._menu, true);
+}
+
+function initEvents(ctx: any): void {
+    const editor = ctx.config.editor;
+    let selecting: boolean = false;
+
+    function updateStatus(delay: number): void {
+        ctx._range = ctx.getRange();
+        utils.delayExec(() => {
+            ctx.menu();
+        })(delay);
+    }
+    addListener(ctx, editor, 'mousedown', () => {
+        selecting = true;
+    });
+    addListener(ctx, editor, 'mouseleave', () => {
+        if (selecting) updateStatus(800);
+        selecting = false;
+    });
+    addListener(ctx, editor, 'mouseup', () => {
+        debugger;
+        if (selecting) updateStatus(100);
+        selecting = false;
+    });
+}
+
 export default class MokaEditor {
     public config: any;
     public selection: any;
     public markdown = markdown;
     private _range: any;
+    private _menu: any;
+    private _stylesheet: any;
 
     constructor(options: any) {
         console.log('--- Editor ---');
@@ -110,6 +145,10 @@ export default class MokaEditor {
         const opts = utils.merge(options);
 
         this.config = opts;
+
+        initToolbar(this);
+
+        initEvents(this);
 
         if (doc.getSelection) {
             this.selection = doc.getSelection();
@@ -133,6 +172,38 @@ export default class MokaEditor {
             range.collapse(false);
         }
         return range;
+    }
+
+    public menu(): any {
+        if (this.selection.isCollapsed) {
+            toggleNode(this._menu, true);
+        }
+
+        const offset = this._range.getBoundingClientRect();
+        const menuPadding: number = 10;
+        const top: number = offset.top + menuPadding;
+        const left: number = offset.left + (offset.width / 2);
+        const menuOffset: any = { x: 0, y: 0 };
+
+        if (offset.width === 0 && offset.height === 0) return;
+
+        if (this._stylesheet === undefined) {
+            const style = doc.createElement('style');
+            document.head.appendChild(style);
+            this._stylesheet = style.sheet;
+        }
+
+        toggleNode(this._menu, false);
+
+        menuOffset.x = left - (this._menu.clientWidth / 2);
+        menuOffset.y = top + this._menu.clientHeight;
+
+        if (this._stylesheet.cssRules.length > 0) {
+            this._stylesheet.deleteRule(0);
+        }
+
+        this._menu.style.top = menuOffset.y + 'px';
+        this._menu.style.left = menuOffset.x + 'px';
     }
 
     public setRange(range?: any): any {
