@@ -123,9 +123,11 @@ function initEvents(ctx: any): void {
         selecting = false;
     });
     addListener(ctx, editor, 'mouseup', () => {
-        debugger;
         if (selecting) updateStatus(100);
         selecting = false;
+    });
+    addListener(ctx, editor, 'click', () => {
+        console.log(ctx.selection);
     });
 }
 
@@ -175,12 +177,14 @@ export default class MokaEditor {
     }
 
     public menu(): any {
+        // debugger;
         if (this.selection.isCollapsed) {
             toggleNode(this._menu, true);
+            return;
         }
 
         const offset = this._range.getBoundingClientRect();
-        const menuPadding: number = 10;
+        const menuPadding: number = 30;
         const top: number = offset.top + menuPadding;
         const left: number = offset.left + (offset.width / 2);
         const menuOffset: any = { x: 0, y: 0 };
@@ -196,7 +200,7 @@ export default class MokaEditor {
         toggleNode(this._menu, false);
 
         menuOffset.x = left - (this._menu.clientWidth / 2);
-        menuOffset.y = top + this._menu.clientHeight;
+        menuOffset.y = top;
 
         if (this._stylesheet.cssRules.length > 0) {
             this._stylesheet.deleteRule(0);
