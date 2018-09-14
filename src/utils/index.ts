@@ -63,6 +63,14 @@ const utils: any = {
 
         return defaults;
     },
+
+    stopPropagation: (e: any): void => {
+        if (e && e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    },
 };
 
 export default utils;
